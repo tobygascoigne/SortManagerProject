@@ -1,8 +1,10 @@
 package com.sparta.toby.sorters;
 
-public class BubbleSort {
+import com.sparta.toby.interfaces.Sorter;
 
-    public void bubbleSort(int[] array) {
+public class BubbleSort implements Sorter {
+
+    public int[] bubbleSort(int[] array) {
         int x = array.length;
         int temp = 0;
         for (int i=0; i < x; i++) {
@@ -14,5 +16,12 @@ public class BubbleSort {
                 }
             }
         }
+        return array;
+    }
+
+    @Override
+    public int[] sortArray(int[] arrayToSort) {
+        return this.bubbleSort(arrayToSort);
+        // return new int[0];
     }
 }

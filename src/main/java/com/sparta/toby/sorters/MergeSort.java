@@ -1,28 +1,32 @@
 package com.sparta.toby.sorters;
 
-public class MergeSort {
+import com.sparta.toby.interfaces.Sorter;
+
+public class MergeSort implements Sorter {
 
     private int[] data;
     private int length;
     private int[] temp;
 
-    public void mergeSort(int[] array) {
+    public int[] mergeSort(int[] array) {
         this.data = array;
         this.length = array.length;
         this.temp = new int[length];
         this.mergeSort(0, length-1);
+        return array;
     }
 
-    private void mergeSort(int lower, int higher) {
+    private int[] mergeSort(int lower, int higher) {
         if (lower < higher) {
             int middle = lower + (higher - lower) / 2;
             this.mergeSort(lower, middle);
             this.mergeSort(middle + 1, higher);
             this.merge(lower, middle, higher);
         }
+        return this.mergeSort(lower, higher);
     }
 
-    private void merge(int lower, int middle, int higher) {
+    private int[] merge(int lower, int middle, int higher) {
         for (int i=lower; i<=higher; i++) {
             this.temp[i] = this.data[i];
         }
@@ -45,5 +49,11 @@ public class MergeSort {
             i++;
         }
 
+        return this.merge(lower, middle, higher);
+    }
+
+    @Override
+    public int[] sortArray(int[] arrayToSort) {
+        return this.mergeSort(arrayToSort);
     }
 }

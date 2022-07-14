@@ -1,5 +1,13 @@
 package com.sparta.toby.logging;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Logging {
-    // log 4 j
+
+    public static Logger logger = LogManager.getLogger("Logger");
+
+    public static Logger getLogger() {
+        return logger;
+    }
 }
